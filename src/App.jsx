@@ -5,13 +5,18 @@ import {
   Navigate,
 } from "react-router-dom";
 import { useEffect, useState } from "react";
-import Homepage from "./components/Homepage";
-import About from "./components/About";
+// import Homepage from "./components/Homepage";
+// import About from "./components/About";
 import Login from "./components/Login";
 import Registration from "./components/Registration";
 import Dashboard from "./components/Dashboard";
-import "./App.css";
 import ForgetPassword from "./components/ForgetPassword";
+import Layout from './Layout.jsx'
+import Home from './LandingPage/Home/Home.jsx'
+import About from './LandingPage/About/About.jsx'
+import Contact from './LandingPage/Contact.jsx'
+import User from './LandingPage/User/User.jsx'
+import Github,{githubInfoLoader} from './LandingPage/Github/Github.jsx'
 
 function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -29,14 +34,23 @@ function App() {
         <Routes>
           <Route
             path="/"
-            element={<Homepage isAuthenticated={isAuthenticated} />}
+            element={<Layout isAuthenticated={isAuthenticated} />}
           />
+          <Route path='' element={<Home />} />
           <Route
             path="/login"
             element={<Login setIsAuthenticated={setIsAuthenticated} />}
           />
           <Route path="/register" element={<Registration />} />
           <Route path="/forgetpass" element={<ForgetPassword />} />
+          <Route path='about' element={<About />} />
+          <Route path='contact' element={<Contact />} />
+          <Route path='user/:userid' element={<User />} />
+          <Route 
+          loader={githubInfoLoader}
+          path='github' 
+          element={<Github />}
+            />
           <Route
             path="/dashboard"
             element={
