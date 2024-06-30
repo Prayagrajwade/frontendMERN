@@ -1,43 +1,63 @@
-import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom';
-import { useEffect, useState } from 'react';
-import Homepage from './components/Homepage' ;
-import About from './components/About';
-import Login from './components/Login';
-import Registration from './components/Registration' ;
-import Dashboard from './components/Dashboard';
-import './App.css'
-import ForgetPassword from './components/ForgetPassword';
-
+import {
+  BrowserRouter as Router,
+  Route,
+  Routes,
+  Navigate,
+} from "react-router-dom";
+import { useEffect, useState } from "react";
+import Homepage from "./components/Homepage";
+import About from "./components/About";
+import Login from "./components/Login";
+import Registration from "./components/Registration";
+import Dashboard from "./components/Dashboard";
+import "./App.css";
+import ForgetPassword from "./components/ForgetPassword";
 
 function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
 
   useEffect(() => {
-    const token = localStorage.getItem('token');
+    const token = localStorage.getItem("token");
     if (token) {
       setIsAuthenticated(true);
     }
   }, []);
 
   return (
-    <div className='app'>
-    <Router>
-      <Routes>
-        <Route path="/" element={<Homepage isAuthenticated={isAuthenticated} />} />
-        <Route path="/login" element={<Login setIsAuthenticated={setIsAuthenticated} />} />
-        <Route path="/register" element={<Registration />} />
-        <Route path="/forgetpass" element={<ForgetPassword />} />
-        <Route path="/dashboard" element={isAuthenticated ? <Dashboard setIsAuthenticated={setIsAuthenticated} /> : <Navigate to="/login" />} />
-        <Route path="/about" element={isAuthenticated ? <About /> : <Navigate to="/login" />} />
+    <div className="app">
+      <Router>
+        <Routes>
+          <Route
+            path="/"
+            element={<Homepage isAuthenticated={isAuthenticated} />}
+          />
+          <Route
+            path="/login"
+            element={<Login setIsAuthenticated={setIsAuthenticated} />}
+          />
+          <Route path="/register" element={<Registration />} />
+          <Route path="/forgetpass" element={<ForgetPassword />} />
+          <Route
+            path="/dashboard"
+            element={
+              isAuthenticated ? (
+                <Dashboard setIsAuthenticated={setIsAuthenticated} />
+              ) : (
+                <Navigate to="/login" />
+              )
+            }
+          />
+          <Route
+            path="/about"
+            element={isAuthenticated ? <About /> : <Navigate to="/login" />}
+          />
         </Routes>
-    </Router>
+      </Router>
     </div>
   );
 }
 
 export default App;
-
-
 
 //****************** With auth *********************/
 
@@ -77,14 +97,14 @@ export default App;
 // import Registration from './components/Registration'
 
 // function App() {
-  
+
 //   return (
 //     <div className='app'>
 //       <Routes>
 //         <Route path="/" element={<Homepage/>} />
 //         <Route path="/login" element={<Login/>} />
 //         <Route path="/register" element={<Registration/>} />
-//       </Routes> 
+//       </Routes>
 //     </div>
 //   )
 // }
