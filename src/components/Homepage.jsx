@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 const Home = ({ isAuthenticated }) => {
     return (
         <div>
-            <h1>Welcome</h1>
+            <h1>Welcome to our app</h1>
             <nav>
                 {isAuthenticated ? (
                     <>
