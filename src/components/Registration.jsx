@@ -16,10 +16,12 @@ function Registration() {
     const handleSubmit = async () => {
         try {
             const response = await axios.post(
-                "http://localhost:8000/api/v1/users/register",
+                '/api/v1/users/register',
                 { fullname, username, avtar, coverImage, email, password }
             );
             setMessage(response.data.message);
+            navigate("/login");
+            console.log(response.data.message);
         } catch (error) {
             console.error("Error registering in:", error);
             setMessage("An error occurred");

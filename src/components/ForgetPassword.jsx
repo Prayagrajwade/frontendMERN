@@ -11,7 +11,7 @@ const ForgetPassword = ({ setIsAuthenticated }) => {
         e.preventDefault();
         try {
             const response = await axios.post(
-                "http://localhost:8000/api/v1/users/login",
+                `${window.location.origin}/api/v1/users/login`,
                 { email }
             );
             setIsAuthenticated(true);

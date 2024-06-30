@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useNavigate, Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
 const Login = ({ setIsAuthenticated }) => {
@@ -7,24 +7,27 @@ const Login = ({ setIsAuthenticated }) => {
     const [password, setPassword] = useState("");
     const [message, setMessage] = useState("");
     const navigate = useNavigate();
-    function handleRegister() {
-        navigate("/register")
-    }
+
     const handleLogin = async (e) => {
         e.preventDefault();
         try {
-            const response = await axios.post(
-                "http://localhost:8000/api/v1/users/login",
-                { email, password }
-            );
+            const response = await axios.post('/api/v1/users/login', {
+                email,
+                password,
+            });
             setIsAuthenticated(true);
             setMessage(response.data.message);
             navigate("/dashboard");
             console.log(response.data.message);
         } catch (error) {
             console.error("Login failed", error);
+            setMessage("Incorrect email or password."); // Display appropriate error message
         }
     };
+
+    function handleRegister() {
+        navigate("/register");
+    }
 
     return (
         <div style={{ maxWidth: "500px", margin: "0 auto" }}>
@@ -66,8 +69,10 @@ const Login = ({ setIsAuthenticated }) => {
                         }}
                     />
                     <button type="submit">Login</button>
-                    <p> Not register?
-                        <button onClick={handleRegister}>Register</button>  
+                    <p>
+                        {" "}
+                        Not registered?
+                        <button onClick={handleRegister}>Register</button>
                     </p>
                     {message && <p>{message}</p>}
                 </div>
@@ -77,6 +82,91 @@ const Login = ({ setIsAuthenticated }) => {
 };
 
 export default Login;
+
+
+
+// import { useState } from "react";
+// import { useNavigate } from "react-router-dom";
+// import axios from "axios";
+// // import { baseURL } from '../Urls'; // Adjust the import path if necessary
+
+// const Login = ({ setIsAuthenticated }) => {
+//     const [email, setEmail] = useState("");
+//     const [password, setPassword] = useState("");
+//     const [message, setMessage] = useState("");
+//     const navigate = useNavigate();
+//     function handleRegister() {
+//         navigate("/register");
+//     }
+//     const handleLogin = async (e) => {
+//         e.preventDefault();
+//         try {
+//             const response = await axios.post('/api/v1/users/login', {
+//                 email,
+//                 password,
+//             });
+//             setIsAuthenticated(true);
+//             setMessage(response.data.message);
+//             navigate("/dashboard");
+//             console.log(response.data.message);
+//         } catch (error) {
+//             console.error("Login failed", error);
+//         }
+//     };
+
+//     return (
+//         <div style={{ maxWidth: "500px", margin: "0 auto" }}>
+//             <header style={{ color: "#224F63" }}>
+//                 <h1>Login</h1>
+//             </header>
+//             <form onSubmit={handleLogin}>
+//                 <div
+//                     style={{
+//                         display: "flex",
+//                         flexDirection: "column",
+//                         marginTop: "20px",
+//                     }}
+//                 >
+//                     <input
+//                         type="text"
+//                         placeholder="Enter Email"
+//                         value={email}
+//                         onChange={(e) => setEmail(e.target.value)}
+//                         style={{
+//                             padding: "20px",
+//                             marginBottom: "10px",
+//                             border: "1px solid #ccc",
+//                             borderRadius: "5px",
+//                             fontSize: "16px",
+//                         }}
+//                     />
+//                     <input
+//                         type="password"
+//                         placeholder="Enter Password"
+//                         value={password}
+//                         onChange={(e) => setPassword(e.target.value)}
+//                         style={{
+//                             padding: "20px",
+//                             marginBottom: "10px",
+//                             border: "1px solid #ccc",
+//                             borderRadius: "5px",
+//                             fontSize: "16px",
+//                         }}
+//                     />
+//                     <button type="submit">Login</button>
+//                     <p>
+//                         {" "}
+//                         Not register?
+//                         <button onClick={handleRegister}>Register</button>
+//                     </p>
+//                     {message && <p>{message}</p>}
+//                 </div>
+//             </form>
+//         </div>
+//     );
+// };
+
+// export default Login;
 
 // import { useState } from 'react';
 // import axios from 'axios';
