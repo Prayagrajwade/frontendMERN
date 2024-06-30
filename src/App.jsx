@@ -21,25 +21,34 @@ const App = () => {
     }
   }, []);
 
+  const ProtectedRoute = ({ element }) => {
+    return isAuthenticated ? element : <Navigate to="/login" />;
+  };
+
+  const PublicRoute = ({ element }) => {
+    return !isAuthenticated ? element : <Navigate to="/dashboard" />;
+  };
+
   return (
     <BrowserRouter>
       <Routes>
-        <Route path='/' element={<Layout />}>
-          <Route path='' element={<Home />} />
-          <Route path='login' element={<Login setIsAuthenticated={setIsAuthenticated} />} />
-          <Route path='register' element={<Registration />} />
-          <Route path='forgetpass' element={<ForgetPassword />} />
-          <Route path='about' element={<About />} />
-          <Route path='contact' element={<Contact />} />
-          <Route path='user/:userid' element={<User />} />
+        <Route path="/" element={<PublicRoute element={<Layout />} />}>
+          <Route path="" element={<Home />} />
+          <Route path="about" element={<About />} />
+          <Route path="contact" element={<Contact />} />
+          <Route path="user/:userid" element={<User />} />
         </Route>
-        <Route path='dashboard' element={isAuthenticated ? <Dashboard setIsAuthenticated={setIsAuthenticated} /> : <Navigate to="/login" />} />
+        <Route path="login" element={<PublicRoute element={<Login setIsAuthenticated={setIsAuthenticated} />} />} />
+        <Route path="register" element={<PublicRoute element={<Registration />} />} />
+        <Route path="forgetpass" element={<PublicRoute element={<ForgetPassword />} />} />
+        <Route path="dashboard" element={<ProtectedRoute element={<Dashboard setIsAuthenticated={setIsAuthenticated} />} />} />
       </Routes>
     </BrowserRouter>
   );
-}
+};
 
 export default App;
+
 
 
 
