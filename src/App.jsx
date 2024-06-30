@@ -27,13 +27,13 @@ const App = () => {
     <BrowserRouter>
       <Routes>
         <Route path='/' element={<Layout />}>
-          <Route path='' element={<Homepage />} />
+          <Route path='' element={<Home />} />
           <Route path='login' element={<Login setIsAuthenticated={setIsAuthenticated} />} />
           <Route path='register' element={<Registration />} />
           <Route path='forgetpass' element={<ForgetPassword />} />
           <Route path='about' element={<About />} />
           <Route path='contact' element={<Contact />} />
-          <Route path='home' element={<Home />} />
+          <Route path='home' element={<Homepage />} />
           <Route path='user/:userid' element={<User />} />
           <Route path='dashboard' element={isAuthenticated ? <Dashboard setIsAuthenticated={setIsAuthenticated} /> : <Navigate to="/login" />} />
         </Route>
