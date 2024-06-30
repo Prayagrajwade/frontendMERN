@@ -12,9 +12,6 @@ const Dashboard = ({ setIsAuthenticated }) => {
     return (
         <div>
             <h1>Dashboard</h1>
-            <nav>
-                <Link to="/about">About</Link>
-            </nav>
             <button onClick={handleLogout}>Logout</button>
         </div>
     );
