@@ -11,10 +11,13 @@ const Login = ({ setIsAuthenticated }) => {
     const handleLogin = async (e) => {
         e.preventDefault();
         try {
-            const response = await axios.post('/api/v1/users/login', {
-                email,
-                password,
-            });
+            const response = await axios.post(
+                "https://backendmern-r876.onrender.com/api/v1/users/login",
+                {
+                    email,
+                    password,
+                }
+            );
             setIsAuthenticated(true);
             setMessage(response.data.message);
             navigate("/dashboard");
@@ -82,8 +85,6 @@ const Login = ({ setIsAuthenticated }) => {
 };
 
 export default Login;
-
-
 
 // import { useState } from "react";
 // import { useNavigate } from "react-router-dom";
