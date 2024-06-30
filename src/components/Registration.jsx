@@ -16,7 +16,7 @@ function Registration() {
     const handleSubmit = async () => {
         try {
             const response = await axios.post(
-                '/api/v1/users/register',
+                'https://backendmern-r876.onrender.com/api/v1/users/register',
                 { fullname, username, avtar, coverImage, email, password }
             );
             setMessage(response.data.message);
