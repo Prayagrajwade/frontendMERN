@@ -14,7 +14,7 @@ import ForgetPassword from "./components/ForgetPassword";
 import Layout from './Layout.jsx'
 import Home from './LandingPage/Home/Home.jsx'
 import About from './LandingPage/About/About.jsx'
-import Contact from './LandingPage/Contact.jsx'
+import Contact from './LandingPage/Contact/Contact.jsx'
 import User from './LandingPage/User/User.jsx'
 import Github,{githubInfoLoader} from './LandingPage/Github/Github.jsx'
 
