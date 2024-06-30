@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 
-const Home = ({ isAuthenticated }) => {
+const Homepage = ({ isAuthenticated }) => {
     return (
         <div>
             <h1>Welcome to our app</h1>
@@ -21,4 +21,4 @@ const Home = ({ isAuthenticated }) => {
     );
 };
 
-export default Home;
+export default Homepage;

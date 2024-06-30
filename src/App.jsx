@@ -10,6 +10,7 @@ import Home from './LandingPage/Home/Home.jsx';
 import About from './LandingPage/About/About.jsx';
 import Contact from './LandingPage/Contact/Contact.jsx';
 import User from './LandingPage/User/User.jsx';
+import Homepage from './components/Homepage.jsx';
 // import Github, { githubInfoLoader } from './LandingPage/Github/Github.jsx';
 
 const App = () => {
@@ -26,12 +27,13 @@ const App = () => {
     <BrowserRouter>
       <Routes>
         <Route path='/' element={<Layout />}>
-          <Route path='' element={<Home />} />
+          <Route path='' element={<Homepage />} />
           <Route path='login' element={<Login setIsAuthenticated={setIsAuthenticated} />} />
           <Route path='register' element={<Registration />} />
           <Route path='forgetpass' element={<ForgetPassword />} />
           <Route path='about' element={<About />} />
           <Route path='contact' element={<Contact />} />
+          <Route path='home' element={<Home />} />
           <Route path='user/:userid' element={<User />} />
           <Route path='dashboard' element={isAuthenticated ? <Dashboard setIsAuthenticated={setIsAuthenticated} /> : <Navigate to="/login" />} />
         </Route>
