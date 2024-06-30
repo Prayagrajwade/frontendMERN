@@ -1,24 +1,20 @@
-import {
-  BrowserRouter as Router,
-  Route,
-  Routes,
-  Navigate,
-} from "react-router-dom";
+import React from 'react';
+import ReactDOM from 'react-dom/client';
+import './index.css';
+import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import { useEffect, useState } from "react";
-// import Homepage from "./components/Homepage";
-// import About from "./components/About";
 import Login from "./components/Login";
 import Registration from "./components/Registration";
 import Dashboard from "./components/Dashboard";
 import ForgetPassword from "./components/ForgetPassword";
-import Layout from './Layout.jsx'
-import Home from './LandingPage/Home/Home.jsx'
-import About from './LandingPage/About/About.jsx'
-import Contact from './LandingPage/Contact/Contact.jsx'
-import User from './LandingPage/User/User.jsx'
-import Github,{githubInfoLoader} from './LandingPage/Github/Github.jsx'
+import Layout from './Layout.jsx';
+import Home from './LandingPage/Home/Home.jsx';
+import About from './LandingPage/About/About.jsx';
+import Contact from './LandingPage/Contact/Contact.jsx';
+import User from './LandingPage/User/User.jsx';
+import Github, { githubInfoLoader } from './LandingPage/Github/Github.jsx';
 
-function App() {
+const App = () => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
 
   useEffect(() => {
@@ -29,49 +25,105 @@ function App() {
   }, []);
 
   return (
-    <div className="app">
-      <Router>
-        <Routes>
-          <Route
-            path="/"
-            element={<Layout isAuthenticated={isAuthenticated} />}
-          />
+    <BrowserRouter>
+      <Routes>
+        <Route path='/' element={<Layout />}>
           <Route path='' element={<Home />} />
-          <Route
-            path="/login"
-            element={<Login setIsAuthenticated={setIsAuthenticated} />}
-          />
-          <Route path="/register" element={<Registration />} />
-          <Route path="/forgetpass" element={<ForgetPassword />} />
-          <Route path='about' element={<About />} />
+          <Route path='login' element={<Login setIsAuthenticated={setIsAuthenticated} />} />
+          <Route path='register' element={<Registration />} />
+          <Route path='forgetpass' element={<ForgetPassword />} />
+          <Route path='about' element={isAuthenticated ? <About /> : <Navigate to="/login" />} />
           <Route path='contact' element={<Contact />} />
           <Route path='user/:userid' element={<User />} />
-          <Route 
-          loader={githubInfoLoader}
-          path='github' 
-          element={<Github />}
-            />
-          <Route
-            path="/dashboard"
-            element={
-              isAuthenticated ? (
-                <Dashboard setIsAuthenticated={setIsAuthenticated} />
-              ) : (
-                <Navigate to="/login" />
-              )
-            }
-          />
-          <Route
-            path="/about"
-            element={isAuthenticated ? <About /> : <Navigate to="/login" />}
-          />
-        </Routes>
-      </Router>
-    </div>
+          <Route path='github' element={<Github />} loader={githubInfoLoader} />
+          <Route path='dashboard' element={isAuthenticated ? <Dashboard setIsAuthenticated={setIsAuthenticated} /> : <Navigate to="/login" />} />
+        </Route>
+      </Routes>
+    </BrowserRouter>
   );
 }
 
 export default App;
+
+
+
+
+
+
+// import {
+//   BrowserRouter as Router,
+//   Route,
+//   Routes,
+//   Navigate,
+// } from "react-router-dom";
+// import { useEffect, useState } from "react";
+// // import Homepage from "./components/Homepage";
+// // import About from "./components/About";
+// import Login from "./components/Login";
+// import Registration from "./components/Registration";
+// import Dashboard from "./components/Dashboard";
+// import ForgetPassword from "./components/ForgetPassword";
+// import Layout from './Layout.jsx'
+// import Home from './LandingPage/Home/Home.jsx'
+// import About from './LandingPage/About/About.jsx'
+// import Contact from './LandingPage/Contact/Contact.jsx'
+// import User from './LandingPage/User/User.jsx'
+// import Github,{githubInfoLoader} from './LandingPage/Github/Github.jsx'
+
+// function App() {
+//   const [isAuthenticated, setIsAuthenticated] = useState(false);
+
+//   useEffect(() => {
+//     const token = localStorage.getItem("token");
+//     if (token) {
+//       setIsAuthenticated(true);
+//     }
+//   }, []);
+
+//   return (
+//     <div className="app">
+//       <Router>
+//         <Routes>
+//           <Route
+//             path="/"
+//             element={<Layout isAuthenticated={isAuthenticated} />}
+//           />
+//           <Route path='' element={<Home />} />
+//           <Route
+//             path="/login"
+//             element={<Login setIsAuthenticated={setIsAuthenticated} />}
+//           />
+//           <Route path="/register" element={<Registration />} />
+//           <Route path="/forgetpass" element={<ForgetPassword />} />
+//           <Route path='about' element={<About />} />
+//           <Route path='contact' element={<Contact />} />
+//           <Route path='user/:userid' element={<User />} />
+//           <Route 
+//           loader={githubInfoLoader}
+//           path='github' 
+//           element={<Github />}
+//             />
+//           <Route
+//             path="/dashboard"
+//             element={
+//               isAuthenticated ? (
+//                 <Dashboard setIsAuthenticated={setIsAuthenticated} />
+//               ) : (
+//                 <Navigate to="/login" />
+//               )
+//             }
+//           />
+//           <Route
+//             path="/about"
+//             element={isAuthenticated ? <About /> : <Navigate to="/login" />}
+//           />
+//         </Routes>
+//       </Router>
+//     </div>
+//   );
+// }
+
+// export default App;
 
 //****************** With auth *********************/
 
