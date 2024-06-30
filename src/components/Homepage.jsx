@@ -10,16 +10,10 @@ const Home = ({ isAuthenticated }) => {
                         <Link to="/dashboard">
                             Go to Dashboard
                         </Link>
-                        <br />
-                        <Link to="/about">
-                            About
-                        </Link>
                     </div>
                 ) : (
                     <div>
-                        <Link to="/login">Login</Link>
-                        <br />
-                        <Link to="/register">Sign Up</Link>
+                        <Link to="/">Layout</Link>
                     </div>
                 )}
             </nav>
