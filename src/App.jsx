@@ -1,5 +1,3 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
 import './index.css';
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import { useEffect, useState } from "react";
@@ -12,7 +10,7 @@ import Home from './LandingPage/Home/Home.jsx';
 import About from './LandingPage/About/About.jsx';
 import Contact from './LandingPage/Contact/Contact.jsx';
 import User from './LandingPage/User/User.jsx';
-import Github, { githubInfoLoader } from './LandingPage/Github/Github.jsx';
+// import Github, { githubInfoLoader } from './LandingPage/Github/Github.jsx';
 
 const App = () => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -32,10 +30,9 @@ const App = () => {
           <Route path='login' element={<Login setIsAuthenticated={setIsAuthenticated} />} />
           <Route path='register' element={<Registration />} />
           <Route path='forgetpass' element={<ForgetPassword />} />
-          <Route path='about' element={isAuthenticated ? <About /> : <Navigate to="/login" />} />
+          <Route path='about' element={<About />} />
           <Route path='contact' element={<Contact />} />
           <Route path='user/:userid' element={<User />} />
-          <Route path='github' element={<Github />} loader={githubInfoLoader} />
           <Route path='dashboard' element={isAuthenticated ? <Dashboard setIsAuthenticated={setIsAuthenticated} /> : <Navigate to="/login" />} />
         </Route>
       </Routes>
