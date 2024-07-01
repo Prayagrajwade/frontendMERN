@@ -71,15 +71,15 @@ const Dashboard = ({ setIsAuthenticated }) => {
                         <button
                             onClick={handleLogout}
                             className="flex transform items-center rounded-lg px-3 py-2 text-gray-200 transition-colors duration-300 hover:bg-gray-100 hover:text-gray-700">
-                            <LogOut className="h-5 w-5" aria-hidden="true"/>
+                            <LogOut className="h-5 w-5" aria-hidden="true" />
                             <span className="mx-2 text-sm font-medium">Logout</span>
                         </button>
+                        <ToastContainer
+                            position="top-center"
+                            autoClose={2000}
+                        />
                     </div>
                 </nav>
-                <ToastContainer
-                    position="top-center"
-                    autoClose={2000}
-                />
             </div>
         </aside>
     );

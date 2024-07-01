@@ -26,6 +26,7 @@ function Registration() {
             console.log(response.data.message);
         } catch (error) {
             console.error("Error registering in:", error);
+            toast.error("Fill required fields!");
             setMessage("An error occurred");
         }
     };

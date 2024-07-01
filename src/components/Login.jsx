@@ -27,6 +27,7 @@ const Login = ({ setIsAuthenticated }) => {
             console.log(response.data.message);
         } catch (error) {
             console.error("Login failed", error);
+            toast.error("Provide correct email!");
             setMessage("Incorrect email or password."); // Display appropriate error message
         }
     };
@@ -177,13 +178,13 @@ const Login = ({ setIsAuthenticated }) => {
                                 </div>
                                 {message && <p>{message}</p>}
                             </div>
+                            <ToastContainer
+                            position="top-center"
+                            autoClose={3000}
+                        />
                         </form>
                     </div>
                 </div>
-                <ToastContainer
-                    position="top-center"
-                    autoClose={2000}
-                />
             </div>
         </section>
     )
