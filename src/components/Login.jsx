@@ -132,7 +132,7 @@ const Login = ({ setIsAuthenticated }) => {
 
                             {" "}
                             Not registered?
-                            <button onClick={handleRegister}>Register</button>
+                            <button onClick={handleRegister} className="text-blue-600 hover:underline">Register</button>
                         </p>
 
                         <form onSubmit={handleLogin} className="mt-8">
