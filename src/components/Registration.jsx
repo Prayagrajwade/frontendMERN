@@ -1,9 +1,7 @@
 import { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-import { toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
-toast.configure();
+
 
 import { ArrowRight } from 'lucide-react'
 function Registration() {
@@ -23,9 +21,6 @@ function Registration() {
                 'https://backendmern-r876.onrender.com/api/v1/users/register',
                 { fullname, username, avtar, coverImage, email, password }
             );
-            toast("Registerd Successfully", {
-                position: toast.POSITION.TOP_CENTER,
-            })
             setMessage(response.data.message);
             // navigate("/login");
             console.log(response.data.message);
