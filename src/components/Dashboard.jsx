@@ -1,13 +1,24 @@
 import { useNavigate } from "react-router-dom";
 import { BarChart, Wallet, Newspaper, BellRing, Paperclip, Brush, LogOut } from 'lucide-react'
+import axios from "axios";
 
 const Dashboard = ({ setIsAuthenticated }) => {
     const navigate = useNavigate();
 
-    const handleLogout = () => {
-        localStorage.removeItem("token");
-        setIsAuthenticated(false);
-        navigate("/");
+    // const handleLogout = () => {
+    //     localStorage.removeItem("token");
+    //     setIsAuthenticated(false);
+    //     navigate("/");
+    // };
+
+    const handleLogout = async (e) => {
+        e.preventDefault();
+            const response = await axios.post(
+                "https://backendmern-r876.onrender.com/api/v1/users/logout",
+            );
+            setIsAuthenticated(true);
+            navigate("/");
+            console.log(response.data.message);
     };
 
     return (
