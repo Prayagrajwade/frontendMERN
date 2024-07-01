@@ -1,16 +1,15 @@
-import { useNavigate } from "react-router-dom";
+// import { useNavigate } from "react-router-dom";
 import { BarChart, Wallet, Newspaper, BellRing, Paperclip, Brush, LogOut } from 'lucide-react';
 import axios from "axios";
 
 const Dashboard = ({ setIsAuthenticated }) => {
-    const navigate = useNavigate();
+    // const navigate = useNavigate();
 
     const handleLogout = async () => {
             await axios.post("https://backendmern-r876.onrender.com/api/v1/users/logout")
             .then(res => {
-                if(res.data.message === "Success"){
+                if(res.data.Status === "Success"){
                     location.reload(true);
-                    navigate("/");
                 } else{
                     alert("error");
                 }
