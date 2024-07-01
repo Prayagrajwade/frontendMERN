@@ -178,11 +178,11 @@ const Login = ({ setIsAuthenticated }) => {
                                 </div>
                                 {message && <p>{message}</p>}
                             </div>
-                            <ToastContainer
+                        </form>
+                        <ToastContainer
                             position="top-center"
                             autoClose={3000}
                         />
-                        </form>
                     </div>
                 </div>
             </div>
