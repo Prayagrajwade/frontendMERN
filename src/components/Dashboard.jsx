@@ -6,17 +6,16 @@ const Dashboard = ({ setIsAuthenticated }) => {
     const navigate = useNavigate();
 
     const handleLogout = async () => {
-        try {
-            const response = await axios.post(
-                "https://backendmern-r876.onrender.com/api/v1/users/logout",{}
-            );
-            setIsAuthenticated(false);
-            navigate("/");
-            console.log(response.data.message);
-        } catch (error) {
-            console.error("Logout failed", error);
-        }
-    };
+            await axios.post("https://backendmern-r876.onrender.com/api/v1/users/logout")
+            .then(res => {
+                if(res.data.message === "Success"){
+                    location.reload(true);
+                    navigate("/");
+                } else{
+                    alert("error");
+                }
+            }).catch(err => console.log(err))
+        };
 
     return (
         <aside className="flex h-screen w-64 flex-col overflow-y-auto border-r bg-black px-5 py-8">
