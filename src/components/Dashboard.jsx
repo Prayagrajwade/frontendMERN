@@ -14,8 +14,7 @@ const Dashboard = ({ setIsAuthenticated }) => {
     const handleLogout = async (e) => {
         e.preventDefault();
             const response = await axios.post(
-                "https://backendmern-r876.onrender.com/api/v1/users/logout",
-            );
+                "https://backendmern-r876.onrender.com/api/v1/users/logout");
             setIsAuthenticated(true);
             navigate("/");
             console.log(response.data.message);
