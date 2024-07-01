@@ -5,11 +5,10 @@ import axios from "axios";
 const Dashboard = ({ setIsAuthenticated }) => {
     const navigate = useNavigate();
 
-    const handleLogout = async (e) => {
-        e.preventDefault();
+    const handleLogout = async () => {
         try {
             const response = await axios.post(
-                "https://backendmern-r876.onrender.com/api/v1/users/logout"
+                "https://backendmern-r876.onrender.com/api/v1/users/logout",{}
             );
             setIsAuthenticated(false);
             navigate("/");
