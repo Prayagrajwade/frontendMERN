@@ -1,8 +1,8 @@
 import { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-
-
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import { ArrowRight } from 'lucide-react'
 function Registration() {
     const [fullname, setFullname] = useState("");
@@ -21,6 +21,7 @@ function Registration() {
                 'https://backendmern-r876.onrender.com/api/v1/users/register',
                 { fullname, username, avtar, coverImage, email, password }
             );
+            toast.success("This is a toast notification !");
             setMessage(response.data.message);
             // navigate("/login");
             console.log(response.data.message);
@@ -122,10 +123,10 @@ function Registration() {
                                         </label>
                                         <div className="mt-2">
                                             <input
-                                            type="file"
-                                            placeholder="Upload Coverimage"
-                                            value={coverImage}
-                                            onChange={(e) => setCoverimage(e.target.value)}
+                                                type="file"
+                                                placeholder="Upload Coverimage"
+                                                value={coverImage}
+                                                onChange={(e) => setCoverimage(e.target.value)}
                                                 className="flex h-10 w-full rounded-md border border-gray-300 bg-transparent px-3 py-2 text-sm placeholder:text-gray-400 focus:outline-none focus:ring-1 focus:ring-gray-400 focus:ring-offset-1 disabled:cursor-not-allowed disabled:opacity-50"
                                                 id="email"
                                             ></input>
@@ -172,6 +173,11 @@ function Registration() {
                         />
                     </div>
                     {message && <p>{message}</p>}
+                    <ToastContainer
+                        position="top-center"
+                        autoClose={2000}
+                    />
+
                 </div>
             </section>
         </div>
