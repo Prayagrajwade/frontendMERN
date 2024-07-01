@@ -5,8 +5,8 @@ import axios from "axios";
 const Dashboard = ({ setIsAuthenticated }) => {
     // const navigate = useNavigate();
 
-    const handleLogout = async () => {
-            await axios.post("https://backendmern-r876.onrender.com/api/v1/users/logout")
+    const handleLogout = () => {
+            axios.post("https://backendmern-r876.onrender.com/api/v1/users/logout")
             .then(res => {
                 if(res.data.Status === "Success"){
                     location.reload(true);
