@@ -1,14 +1,11 @@
 import { useNavigate } from "react-router-dom";
 import { BarChart, Wallet, Newspaper, BellRing, Paperclip, Brush, LogOut } from 'lucide-react'
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
 
 const Dashboard = ({ setIsAuthenticated }) => {
     const navigate = useNavigate();
 
     const handleLogout = () => {
         localStorage.removeItem("token");
-        toast.success("Logout successfully!");
         setIsAuthenticated(false);
         navigate("/");
     };
@@ -74,10 +71,6 @@ const Dashboard = ({ setIsAuthenticated }) => {
                             <LogOut className="h-5 w-5" aria-hidden="true" />
                             <span className="mx-2 text-sm font-medium">Logout</span>
                         </button>
-                        <ToastContainer
-                            position="top-center"
-                            autoClose={2000}
-                        />
                     </div>
                 </nav>
             </div>
