@@ -2,6 +2,8 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { ArrowRight } from 'lucide-react'
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 const Login = ({ setIsAuthenticated }) => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
@@ -19,6 +21,7 @@ const Login = ({ setIsAuthenticated }) => {
                 }
             );
             setIsAuthenticated(true);
+            toast.success("Login successfully!");
             setMessage(response.data.message);
             navigate("/dashboard");
             console.log(response.data.message);
@@ -177,6 +180,10 @@ const Login = ({ setIsAuthenticated }) => {
                         </form>
                     </div>
                 </div>
+                <ToastContainer
+                    position="top-center"
+                    autoClose={2000}
+                />
             </div>
         </section>
     )

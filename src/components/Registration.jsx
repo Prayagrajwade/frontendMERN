@@ -21,9 +21,8 @@ function Registration() {
                 'https://backendmern-r876.onrender.com/api/v1/users/register',
                 { fullname, username, avtar, coverImage, email, password }
             );
-            toast.success("This is a toast notification !");
+            toast.success("Registered successfully!");
             setMessage(response.data.message);
-            // navigate("/login");
             console.log(response.data.message);
         } catch (error) {
             console.error("Error registering in:", error);
@@ -177,7 +176,6 @@ function Registration() {
                         position="top-center"
                         autoClose={2000}
                     />
-
                 </div>
             </section>
         </div>
