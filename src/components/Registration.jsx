@@ -27,7 +27,7 @@ function Registration() {
                 position: toast.POSITION.TOP_CENTER,
             })
             setMessage(response.data.message);
-            navigate("/login");
+            // navigate("/login");
             console.log(response.data.message);
         } catch (error) {
             console.error("Error registering in:", error);
