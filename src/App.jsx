@@ -9,8 +9,8 @@ import Home from './LandingPage/Home/Home.jsx';
 import About from './LandingPage/About/About.jsx';
 import Contact from './LandingPage/Contact/Contact.jsx';
 import User from './LandingPage/User/User.jsx';
-import Dashboard from './components/Dasboard.jsx';
 import Sidebar from './components/Sidebar.jsx';
+import Dashboard from './components/Dasboard.jsx';
 import UserProfile from './components/UserProfile.jsx';
 
 const App = () => {
@@ -42,11 +42,10 @@ const App = () => {
           <Route path="login" element={<Login setIsAuthenticated={setIsAuthenticated} />} />
           <Route path="register" element={<Registration />} />
           <Route path="forgetpass" element={<ForgetPassword />} />
-        </Route> 
-        <Route path="/" element={<ProtectedRoute element={<Sidebar />} />}>
-        <Route path="" element={<Dashboard setIsAuthenticated={setIsAuthenticated} />} />
-        <Route path="userprofile" element={<UserProfile setIsAuthenticated={setIsAuthenticated} />} />
         </Route>
+        <Route path="sidebar" element={<ProtectedRoute element={<Sidebar setIsAuthenticated={setIsAuthenticated} />} />} />
+        <Route path="dashboard" element={<ProtectedRoute element={<Dashboard setIsAuthenticated={setIsAuthenticated} />} />} />
+        <Route path="profile" element={<ProtectedRoute element={<UserProfile setIsAuthenticated={setIsAuthenticated}/>} />} />
       </Routes>
     </BrowserRouter>
   );
@@ -56,8 +55,7 @@ export default App;
 
 
 
-// <Route path="sidebar" element={<ProtectedRoute element={<Sidebar setIsAuthenticated={setIsAuthenticated} />} />} />
-// <Route path="dashboard" element={<ProtectedRoute element={<Dashboard setIsAuthenticated={setIsAuthenticated} />} />} />
+
 
 
 
