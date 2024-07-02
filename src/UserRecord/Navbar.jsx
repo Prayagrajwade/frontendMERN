@@ -1,6 +1,6 @@
 import { NavLink } from "react-router-dom";
 
-export default function Navbar() {
+export default function Navbar({setIsAuthenticated}) {
     return (
         <div>
             <nav className="flex justify-between items-center mb-6">
