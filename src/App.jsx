@@ -1,6 +1,6 @@
 import './index.css';
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import Login from "./components/Login";
 import Registration from "./components/Registration";
 import Dashboard from "./components/Dashboard";
@@ -10,25 +10,9 @@ import Home from './LandingPage/Home/Home.jsx';
 import About from './LandingPage/About/About.jsx';
 import Contact from './LandingPage/Contact/Contact.jsx';
 import User from './LandingPage/User/User.jsx';
-import { CurrentUser } from './components/CurrentUser.jsx';
 
 const App = () => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
-  const [currentUser, setCurrentUser] = useState(null);
-  useEffect(() => {
-    const fetchUser = async () => {
-        try {
-            const data = await CurrentUser();
-            setCurrentUser(data);
-            setIsAuthenticated(true);
-        } catch (error) {
-            console.error("Failed to fetch current user", error);
-            setIsAuthenticated(false);
-        }
-    };
-
-    fetchUser();
-}, []);
 
   // useEffect(() => {
   //   const token = localStorage.getItem("token");
@@ -57,7 +41,7 @@ const App = () => {
         <Route path="login" element={<PublicRoute element={<Login setIsAuthenticated={setIsAuthenticated} />} />} />
         <Route path="register" element={<PublicRoute element={<Registration />} />} />
         <Route path="forgetpass" element={<PublicRoute element={<ForgetPassword />} />} />
-        <Route path="dashboard" element={<ProtectedRoute element={<Dashboard setIsAuthenticated={setIsAuthenticated} currentUser={currentUser} />} />} />
+        <Route path="dashboard" element={<ProtectedRoute element={<Dashboard setIsAuthenticated={setIsAuthenticated} />} />} />
       </Routes>
     </BrowserRouter>
   );
