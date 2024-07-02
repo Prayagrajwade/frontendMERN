@@ -1,8 +1,30 @@
-import React from 'react'
+import axios from 'axios'
+import { useEffect, useState } from 'react';
 
-function Dashboard({ setIsAuthenticated }) {
+const Dashboard = () => {
+    const [users, setUsers] = useState([]); // State to store our users
+
+    useEffect(() => {
+        const fetchUsers = async () => {
+            try {
+                const response = await axios.get('https://backendmern-r876.onrender.com/api/v1/users/current-user'); // Fetch users from our API
+                setUsers(response.data); // Update state with fetched users
+            } catch (error) {
+                console.error('Error fetching users:', error);
+            }
+        };
+
+        fetchUsers();
+    }, []);
     return (
-        <div>Dashboard</div>
+        <div>
+            <div>Get current user</div>
+            <ul>
+                {users.map(user => (
+                    <li key={user._id}>{user.name}</li> // Display each user's name
+                ))}
+            </ul>
+        </div>
     )
 }
 
