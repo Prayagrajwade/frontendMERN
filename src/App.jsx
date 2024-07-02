@@ -43,7 +43,7 @@ const App = () => {
           <Route path="register" element={<Registration />} />
           <Route path="forgetpass" element={<ForgetPassword />} />
         </Route>
-        <Route path="sidebar" element={<ProtectedRoute element={<Sidebar setIsAuthenticated={setIsAuthenticated} />} />} />
+        <Route path="/" element={<ProtectedRoute element={<Sidebar setIsAuthenticated={setIsAuthenticated} />} />} />
         <Route path="dashboard" element={<ProtectedRoute element={<Dashboard setIsAuthenticated={setIsAuthenticated} />} />} />
         <Route path="profile" element={<ProtectedRoute element={<UserProfile setIsAuthenticated={setIsAuthenticated}/>} />} />
       </Routes>
