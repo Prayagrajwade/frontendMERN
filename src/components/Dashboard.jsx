@@ -75,7 +75,7 @@ const Dashboard = ({ setIsAuthenticated, currentUser }) => {
                         </button>
                     </div>
                 </nav>
-                <div className="mt-6 text-white">
+                <div className="mt-6 text-blue-500">
                 {currentUser && <p>Welcome, {currentUser}!</p>}
             </div>
             </div>
