@@ -2,7 +2,7 @@ import { useNavigate } from "react-router-dom";
 import { BarChart, Wallet, Newspaper, BellRing, Paperclip, Brush, LogOut } from 'lucide-react';
 // import axios from "axios";
 
-const Dashboard = ({ setIsAuthenticated }) => {
+const Dashboard = ({ setIsAuthenticated, currentUser }) => {
     const navigate = useNavigate();
 
     const handleLogout = () => {
@@ -75,6 +75,9 @@ const Dashboard = ({ setIsAuthenticated }) => {
                         </button>
                     </div>
                 </nav>
+                <div className="mt-6 text-white">
+                {currentUser && <p>Welcome, {currentUser.user.username}!</p>}
+            </div>
             </div>
         </aside>
     );

@@ -10,16 +10,32 @@ import Home from './LandingPage/Home/Home.jsx';
 import About from './LandingPage/About/About.jsx';
 import Contact from './LandingPage/Contact/Contact.jsx';
 import User from './LandingPage/User/User.jsx';
+import { CurrentUser } from './components/CurrentUser.jsx';
 
 const App = () => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
-
+  const [currentUser, setCurrentUser] = useState(null);
   useEffect(() => {
-    const token = localStorage.getItem("token");
-    if (token) {
-      setIsAuthenticated(true);
-    }
-  }, []);
+    const fetchUser = async () => {
+        try {
+            const data = await CurrentUser();
+            setCurrentUser(data);
+            setIsAuthenticated(true);
+        } catch (error) {
+            console.error("Failed to fetch current user", error);
+            setIsAuthenticated(false);
+        }
+    };
+
+    fetchUser();
+}, []);
+
+  // useEffect(() => {
+  //   const token = localStorage.getItem("token");
+  //   if (token) {
+  //     setIsAuthenticated(true);
+  //   }
+  // }, []);
 
   const ProtectedRoute = ({ element }) => {
     return isAuthenticated ? element : <Navigate to="/login" />;
@@ -41,7 +57,7 @@ const App = () => {
         <Route path="login" element={<PublicRoute element={<Login setIsAuthenticated={setIsAuthenticated} />} />} />
         <Route path="register" element={<PublicRoute element={<Registration />} />} />
         <Route path="forgetpass" element={<PublicRoute element={<ForgetPassword />} />} />
-        <Route path="dashboard" element={<ProtectedRoute element={<Dashboard setIsAuthenticated={setIsAuthenticated} />} />} />
+        <Route path="dashboard" element={<ProtectedRoute element={<Dashboard setIsAuthenticated={setIsAuthenticated} currentUser={currentUser} />} />} />
       </Routes>
     </BrowserRouter>
   );
