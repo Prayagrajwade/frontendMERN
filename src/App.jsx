@@ -36,7 +36,6 @@ const App = () => {
 
   return (
     <BrowserRouter>
-    <NavBar/>
       <Routes>
         <Route path="/" element={<PublicRoute element={<Layout />} />}>
           <Route path="" element={<Home />} />
@@ -52,6 +51,7 @@ const App = () => {
         <Route path="profile" element={<ProtectedRoute element={<UserProfile setIsAuthenticated={setIsAuthenticated}/>} />} />
         <Route path="record" element={<ProtectedRoute element={<Record setIsAuthenticated={setIsAuthenticated} />}/>} />
         <Route path="recordlist" element={<ProtectedRoute element={<RecordList setIsAuthenticated={setIsAuthenticated} />}/>} />
+        <Route path="navbar" element={<ProtectedRoute element={<NavBar setIsAuthenticated={setIsAuthenticated}/>}/>} />
       </Routes>
     </BrowserRouter>
   );

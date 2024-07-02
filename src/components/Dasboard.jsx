@@ -1,9 +1,8 @@
-import NavBar from "../UserRecord/NavBar";
-
+import React from 'react'
 
 function Dashboard({ setIsAuthenticated }) {
     return (
-        <NavBar/>
+        <div>Dashboard</div>
     )
 }
 
