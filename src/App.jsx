@@ -11,6 +11,7 @@ import Contact from './LandingPage/Contact/Contact.jsx';
 import User from './LandingPage/User/User.jsx';
 import Dashboard from './components/Dasboard.jsx';
 import Sidebar from './components/Sidebar.jsx';
+import UserProfile from './components/UserProfile.jsx';
 
 const App = () => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -43,7 +44,8 @@ const App = () => {
           <Route path="forgetpass" element={<ForgetPassword />} />
         </Route> 
         <Route path="/" element={<ProtectedRoute element={<Sidebar />} />}>
-          <Route path="" element={<Dashboard setIsAuthenticated={setIsAuthenticated} />} />
+        <Route path="" element={<Dashboard setIsAuthenticated={setIsAuthenticated} />} />
+        <Route path="userprofile" element={<UserProfile setIsAuthenticated={setIsAuthenticated} />} />
         </Route>
       </Routes>
     </BrowserRouter>

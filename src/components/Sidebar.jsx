@@ -1,4 +1,4 @@
-import { useNavigate, Link } from "react-router-dom";
+import { useNavigate, NavLink } from "react-router-dom";
 import { BarChart, Wallet, Newspaper, BellRing, Paperclip, Brush, LogOut } from 'lucide-react';
 // import axios from "axios";
 
@@ -17,55 +17,55 @@ const Sidebar = ({ setIsAuthenticated }) => {
                 <nav className="-mx-3 space-y-6 ">
                     <div className="space-y-3 ">
                         <label className="px-3 text-xs font-semibold uppercase text-white">analytics</label>
-                        <Link
+                        <NavLink
                             className="flex transform items-center rounded-lg px-3 py-2 text-gray-200 transition-colors duration-300 hover:bg-gray-50 hover:text-gray-700"
                             to="/"
                         >
                             <BarChart className="h-5 w-5" aria-hidden="true" />
                             <span className="mx-2 text-sm font-medium">Dashboard</span>
-                        </Link>
-                        <Link
+                        </NavLink>
+                        <NavLink
                             className="flex transform items-center rounded-lg px-3 py-2 text-gray-200 transition-colors duration-300 hover:bg-gray-100 hover:text-gray-700"
-                            to="#"
+                            to="/userprofile"
                         >
                             <Wallet className="h-5 w-5" aria-hidden="true" />
-                            <span className="mx-2 text-sm font-medium">Sales</span>
-                        </Link>
+                            <span className="mx-2 text-sm font-medium">Profile</span>
+                        </NavLink>
                     </div>
                     <div className="space-y-3 ">
                         <label className="px-3 text-xs font-semibold uppercase text-white">content</label>
-                        <Link
+                        <NavLink
                             className="flex transform items-center rounded-lg px-3 py-2 text-gray-200 transition-colors duration-300 hover:bg-gray-100 hover:text-gray-700"
                             to="#"
                         >
                             <Newspaper className="h-5 w-5" aria-hidden="true" />
                             <span className="mx-2 text-sm font-medium">Blogs</span>
-                        </Link>
-                        <Link
+                        </NavLink>
+                        <NavLink
                             className="flex transform items-center rounded-lg px-3 py-2 text-gray-200 transition-colors duration-300 hover:bg-gray-100 hover:text-gray-700"
                             to="#"
                         >
                             <BellRing className="h-5 w-5" aria-hidden="true" />
                             <span className="mx-2 text-sm font-medium">Notifications</span>
-                        </Link>
-                        <Link
+                        </NavLink>
+                        <NavLink
                             className="flex transform items-center rounded-lg px-3 py-2 text-gray-200 transition-colors duration-300 hover:bg-gray-100 hover:text-gray-700"
                             to="#"
                         >
                             <Paperclip className="h-5 w-5" aria-hidden="true" />
                             <span className="mx-2 text-sm font-medium">Checklists</span>
-                        </Link>
+                        </NavLink>
                     </div>
 
                     <div className="space-y-3 ">
                         <label className="px-3 text-xs font-semibold uppercase text-white">Customization</label>
-                        <Link
+                        <NavLink
                             className="flex transform items-center rounded-lg px-3 py-2 text-gray-200 transition-colors duration-300 hover:bg-gray-100 hover:text-gray-700"
                             to="#"
                         >
                             <Brush className="h-5 w-5" aria-hidden="true" />
                             <span className="mx-2 text-sm font-medium">Themes</span>
-                        </Link>
+                        </NavLink>
                         <button
                             onClick={handleLogout}
                             className="flex transform items-center rounded-lg px-3 py-2 text-gray-200 transition-colors duration-300 hover:bg-gray-100 hover:text-gray-700"
