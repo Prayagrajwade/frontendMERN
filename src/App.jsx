@@ -12,6 +12,8 @@ import User from './LandingPage/User/User.jsx';
 import Sidebar from './components/Sidebar.jsx';
 import Dashboard from './components/Dasboard.jsx';
 import UserProfile from './components/UserProfile.jsx';
+import Record from './UserRecord/Record.jsx';
+import RecordList from './UserRecord/RecordList.jsx';
 
 const App = () => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -46,6 +48,8 @@ const App = () => {
         <Route path="sidebar" element={<ProtectedRoute element={<Sidebar setIsAuthenticated={setIsAuthenticated} />} />} />
         <Route path="dashboard" element={<ProtectedRoute element={<Dashboard setIsAuthenticated={setIsAuthenticated} />} />} />
         <Route path="profile" element={<ProtectedRoute element={<UserProfile setIsAuthenticated={setIsAuthenticated}/>} />} />
+        <Route path="record" element={<ProtectedRoute element={<Record setIsAuthenticated={setIsAuthenticated} />}/>} />
+        <Route path="recordlist" element={<ProtectedRoute element={<RecordList setIsAuthenticated={setIsAuthenticated} />}/>} />
       </Routes>
     </BrowserRouter>
   );
