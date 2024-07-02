@@ -10,6 +10,7 @@ import Home from './LandingPage/Home/Home.jsx';
 import About from './LandingPage/About/About.jsx';
 import Contact from './LandingPage/Contact/Contact.jsx';
 import User from './LandingPage/User/User.jsx';
+import SaveUserInfo from './components/SaveUserInfo.jsx';
 
 const App = () => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -42,6 +43,7 @@ const App = () => {
         <Route path="register" element={<PublicRoute element={<Registration />} />} />
         <Route path="forgetpass" element={<PublicRoute element={<ForgetPassword />} />} />
         <Route path="dashboard" element={<ProtectedRoute element={<Dashboard setIsAuthenticated={setIsAuthenticated} />} />} />
+        <Route path="saveuserdata" element={<ProtectedRoute element={<SaveUserInfo setIsAuthenticated={setIsAuthenticated} />} />} />
       </Routes>
     </BrowserRouter>
   );
