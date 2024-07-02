@@ -47,7 +47,6 @@ function Todo() {
         axios.post('https://backendmern-r876.onrender.com/addTodoList', { task: newTask, status: newStatus, deadline: newDeadline })
             .then(res => {
                 console.log(res);
-                window.location.reload();
             })
             .catch(err => console.log(err));
     }
@@ -72,7 +71,6 @@ function Todo() {
                 setEditedTask("");
                 setEditedStatus("");
                 setEditedDeadline("");
-                window.location.reload();
             })
             .catch(err => console.log(err));
     }
@@ -82,7 +80,6 @@ function Todo() {
         axios.delete('https://backendmern-r876.onrender.com/deleteTodoList/' + id)
             .then(result => {
                 console.log(result);
-                window.location.reload();
             })
             .catch(err => console.log(err));
     }
