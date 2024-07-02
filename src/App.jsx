@@ -14,7 +14,7 @@ import Dashboard from './components/Dasboard.jsx';
 import UserProfile from './components/UserProfile.jsx';
 import Record from './UserRecord/Record.jsx';
 import RecordList from './UserRecord/RecordList.jsx';
-import NavBar from './UserRecord/NavBar.jsx';
+import LayoutProtected from './LayoutProtected.jsx';
 
 const App = () => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -51,7 +51,7 @@ const App = () => {
         <Route path="profile" element={<ProtectedRoute element={<UserProfile setIsAuthenticated={setIsAuthenticated}/>} />} />
         <Route path="record" element={<ProtectedRoute element={<Record setIsAuthenticated={setIsAuthenticated} />}/>} />
         <Route path="recordlist" element={<ProtectedRoute element={<RecordList setIsAuthenticated={setIsAuthenticated} />}/>} />
-        <Route path="navbar" element={<ProtectedRoute element={<NavBar setIsAuthenticated={setIsAuthenticated}/>}/>} />
+        <Route path="layoutpro" element={<ProtectedRoute element={<LayoutProtected setIsAuthenticated={setIsAuthenticated}/>}/>} />
       </Routes>
     </BrowserRouter>
   );
