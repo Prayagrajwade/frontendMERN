@@ -1,7 +1,7 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 
-function Todo({setIsAuthenticated}) {
+function Todo() {
     const [todoList, setTodoList] = useState([]);
     const [editableId, setEditableId] = useState(null);
     const [editedTask, setEditedTask] = useState("");
@@ -13,7 +13,7 @@ function Todo({setIsAuthenticated}) {
 
     // Fetch tasks from database
     useEffect(() => {
-        axios.get('http://127.0.0.1:3001/getTodoList')
+        axios.get('https://backendmern-r876.onrender.com/getTodoList')
             .then(result => {
                 setTodoList(result.data)
             })
@@ -45,7 +45,7 @@ function Todo({setIsAuthenticated}) {
             return;
         }
 
-        axios.post('http://127.0.0.1:3001/addTodoList', { task: newTask, status: newStatus, deadline: newDeadline })
+        axios.post('https://backendmern-r876.onrender.com/addTodoList', { task: newTask, status: newStatus, deadline: newDeadline })
             .then(res => {
                 console.log(res);
                 window.location.reload();
@@ -68,7 +68,7 @@ function Todo({setIsAuthenticated}) {
         }
 
         // Updating edited data to the database through updateById API
-        axios.post('http://127.0.0.1:3001/updateTodoList/' + id, editedData)
+        axios.post('https://backendmern-r876.onrender.com/updateTodoList/' + id, editedData)
             .then(result => {
                 console.log(result);
                 setEditableId(null);
@@ -83,7 +83,7 @@ function Todo({setIsAuthenticated}) {
 
     // Delete task from database
     const deleteTask = (id) => {
-        axios.delete('http://127.0.0.1:3001/deleteTodoList/' + id)
+        axios.delete('https://backendmern-r876.onrender.com/deleteTodoList/' + id)
             .then(result => {
                 console.log(result);
                 window.location.reload();

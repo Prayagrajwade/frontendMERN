@@ -17,13 +17,6 @@ import Todo from './components/Todo.jsx';
 const App = () => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
 
-  // useEffect(() => {
-  //   const token = localStorage.getItem("token");
-  //   if (token) {
-  //     setIsAuthenticated(true);
-  //   }
-  // }, []);
-
   const ProtectedRoute = ({ element }) => {
     return isAuthenticated ? element : <Navigate to="/login" />;
   };
@@ -47,7 +40,7 @@ const App = () => {
         <Route path="sidebar" element={<ProtectedRoute element={<Sidebar setIsAuthenticated={setIsAuthenticated} />} />} />
         <Route path="dashboard" element={<ProtectedRoute element={<Dashboard setIsAuthenticated={setIsAuthenticated} />} />} />
         <Route path="profile" element={<ProtectedRoute element={<UserProfile setIsAuthenticated={setIsAuthenticated}/>} />} />
-        <Route path="todo" element={<ProtectedRoute element={<Todo setIsAuthenticated={setIsAuthenticated}/>}/>}/>
+        <Route path="todo" element={<ProtectedRoute element={<Todo/>}/>}/>
       </Routes>
     </BrowserRouter>
   );
