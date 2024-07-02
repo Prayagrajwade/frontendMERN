@@ -19,7 +19,7 @@ const Sidebar = ({ setIsAuthenticated }) => {
                         <label className="px-3 text-xs font-semibold uppercase text-white">analytics</label>
                         <Link
                             className="flex transform items-center rounded-lg px-3 py-2 text-gray-200 transition-colors duration-300 hover:bg-gray-50 hover:text-gray-700"
-                            to="/saveuserdata"
+                            to="/"
                         >
                             <BarChart className="h-5 w-5" aria-hidden="true" />
                             <span className="mx-2 text-sm font-medium">Dashboard</span>

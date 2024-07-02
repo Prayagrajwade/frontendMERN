@@ -1,9 +1,9 @@
 import React from 'react'
 
-function Dasboard() {
+function Dashboard() {
     return (
         <div>SaveUserInfo</div>
     )
 }
 
-export default Dashboard
+export default Dashboard;
