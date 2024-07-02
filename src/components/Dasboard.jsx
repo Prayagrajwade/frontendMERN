@@ -1,11 +1,12 @@
-import Todo from './Todo'
+import { Outlet } from "react-router-dom";
 
-function Dasboard() {
+const Dashboard = () => {
   return (
     <div>
-        <Todo/>
+      <h1 className="text-2xl font-bold mb-4">Dashboard</h1>
+      <Outlet />  {/* This will render the nested routes */}
     </div>
-  )
-}
+  );
+};
 
-export default Dasboard;
+export default Dashboard;

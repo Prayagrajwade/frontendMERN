@@ -1,9 +1,12 @@
-import React from 'react'
+import { Outlet } from "react-router-dom";
 
-function UserProfile({ setIsAuthenticated }) {
+const UserProfile = () => {
   return (
-    <div>UserProfile</div>
-  )
-}
+    <div>
+      <h1 className="text-2xl font-bold mb-4">Profile</h1>
+      <Outlet />  {/* This will render the nested routes */}
+    </div>
+  );
+};
 
-export default UserProfile
+export default UserProfile;

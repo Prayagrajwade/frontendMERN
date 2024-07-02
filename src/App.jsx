@@ -1,5 +1,5 @@
 import './index.css';
-import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
+import { BrowserRouter, Routes, Route, Navigate, Outlet } from 'react-router-dom';
 import { useState } from "react";
 import Login from "./components/Login";
 import Registration from "./components/Registration";
@@ -10,7 +10,7 @@ import About from './LandingPage/About/About.jsx';
 import Contact from './LandingPage/Contact/Contact.jsx';
 import User from './LandingPage/User/User.jsx';
 import Sidebar from './components/Sidebar.jsx';
-import Dashboard from './components/Dasboard.jsx';
+import Dashboard from './components/Dashboard.jsx';
 import UserProfile from './components/UserProfile.jsx';
 import Todo from './components/Todo.jsx';
 
@@ -25,6 +25,15 @@ const App = () => {
     return !isAuthenticated ? element : <Navigate to="/dashboard" />;
   };
 
+  const ProtectedLayout = () => (
+    <div className="flex">
+      <Sidebar setIsAuthenticated={setIsAuthenticated} />
+      <main className="flex-1">
+        <Outlet />
+      </main>
+    </div>
+  );
+
   return (
     <BrowserRouter>
       <Routes>
@@ -37,147 +46,15 @@ const App = () => {
           <Route path="register" element={<Registration />} />
           <Route path="forgetpass" element={<ForgetPassword />} />
         </Route>
-        <Route path="sidebar" element={<ProtectedRoute element={<Sidebar setIsAuthenticated={setIsAuthenticated} />} />} />
-        <Route path="dashboard" element={<ProtectedRoute element={<Dashboard setIsAuthenticated={setIsAuthenticated} />} />} />
-        <Route path="profile" element={<ProtectedRoute element={<UserProfile setIsAuthenticated={setIsAuthenticated}/>} />} />
-        <Route path="todo" element={<ProtectedRoute element={<Todo/>}/>}/>
+        <Route path="/" element={<ProtectedRoute element={<ProtectedLayout />} />}>
+          <Route path="dashboard" element={<Dashboard />}>
+            <Route index element={<Todo />} />  {/* Default child route */}
+          </Route>
+          <Route path="profile" element={<UserProfile setIsAuthenticated={setIsAuthenticated} />} />
+        </Route>
       </Routes>
     </BrowserRouter>
   );
 };
 
 export default App;
-
-
-
-
-
-
-
-
-// import {
-//   BrowserRouter as Router,
-//   Route,
-//   Routes,
-//   Navigate,
-// } from "react-router-dom";
-// import { useEffect, useState } from "react";
-// // import Homepage from "./components/Homepage";
-// // import About from "./components/About";
-// import Login from "./components/Login";
-// import Registration from "./components/Registration";
-// import Dashboard from "./components/Dashboard";
-// import ForgetPassword from "./components/ForgetPassword";
-// import Layout from './Layout.jsx'
-// import Home from './LandingPage/Home/Home.jsx'
-// import About from './LandingPage/About/About.jsx'
-// import Contact from './LandingPage/Contact/Contact.jsx'
-// import User from './LandingPage/User/User.jsx'
-// import Github,{githubInfoLoader} from './LandingPage/Github/Github.jsx'
-
-// function App() {
-//   const [isAuthenticated, setIsAuthenticated] = useState(false);
-
-//   useEffect(() => {
-//     const token = localStorage.getItem("token");
-//     if (token) {
-//       setIsAuthenticated(true);
-//     }
-//   }, []);
-
-//   return (
-//     <div className="app">
-//       <Router>
-//         <Routes>
-//           <Route
-//             path="/"
-//             element={<Layout isAuthenticated={isAuthenticated} />}
-//           />
-//           <Route path='' element={<Home />} />
-//           <Route
-//             path="/login"
-//             element={<Login setIsAuthenticated={setIsAuthenticated} />}
-//           />
-//           <Route path="/register" element={<Registration />} />
-//           <Route path="/forgetpass" element={<ForgetPassword />} />
-//           <Route path='about' element={<About />} />
-//           <Route path='contact' element={<Contact />} />
-//           <Route path='user/:userid' element={<User />} />
-//           <Route 
-//           loader={githubInfoLoader}
-//           path='github' 
-//           element={<Github />}
-//             />
-//           <Route
-//             path="/dashboard"
-//             element={
-//               isAuthenticated ? (
-//                 <Dashboard setIsAuthenticated={setIsAuthenticated} />
-//               ) : (
-//                 <Navigate to="/login" />
-//               )
-//             }
-//           />
-//           <Route
-//             path="/about"
-//             element={isAuthenticated ? <About /> : <Navigate to="/login" />}
-//           />
-//         </Routes>
-//       </Router>
-//     </div>
-//   );
-// }
-
-// export default App;
-
-//****************** With auth *********************/
-
-// import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom';
-// import { useEffect, useState } from 'react';
-// import Login from './components/Login';
-// import Dashboard from './components/Dashboard';
-
-// function App() {
-//   const [isAuthenticated, setIsAuthenticated] = useState(false);
-
-//   useEffect(() => {
-//     const token = localStorage.getItem('token');
-//     if (token) {
-//       setIsAuthenticated(true);
-//     }
-//   }, []);
-
-//   return (
-//     <Router>
-//       <Routes>
-//         <Route path="/" element={isAuthenticated ? <Navigate to="/dashboard" /> : <Login setIsAuthenticated={setIsAuthenticated} />} />
-//         <Route path="/dashboard" element={isAuthenticated ? <Dashboard setIsAuthenticated={setIsAuthenticated} /> : <Navigate to="/" />} />
-//       </Routes>
-//     </Router>
-//   );
-// }
-
-// export default App;
-
-//************* Without auth **************************/
-
-// import { Route, Routes } from 'react-router-dom'
-// import './App.css'
-// import Homepage from './components/Homepage'
-// import Login from './components/Login'
-// import Registration from './components/Registration'
-
-// function App() {
-
-//   return (
-//     <div className='app'>
-//       <Routes>
-//         <Route path="/" element={<Homepage/>} />
-//         <Route path="/login" element={<Login/>} />
-//         <Route path="/register" element={<Registration/>} />
-//       </Routes>
-//     </div>
-//   )
-// }
-
-// export default App
