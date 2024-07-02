@@ -22,7 +22,7 @@ const Login = ({ setIsAuthenticated }) => {
             );
             setIsAuthenticated(true);
             setMessage(response.data.message);
-            navigate("/sidebar");
+            navigate("/");
             console.log(response.data.message);
         } catch (error) {
             console.error("Login failed", error);
