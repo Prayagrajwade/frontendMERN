@@ -2,7 +2,7 @@ import { useNavigate, Link } from "react-router-dom";
 import { BarChart, Wallet, Newspaper, BellRing, Paperclip, Brush, LogOut } from 'lucide-react';
 // import axios from "axios";
 
-const Dashboard = ({ setIsAuthenticated }) => {
+const Sidebar = ({ setIsAuthenticated }) => {
     const navigate = useNavigate();
 
     const handleLogout = () => {
@@ -80,7 +80,7 @@ const Dashboard = ({ setIsAuthenticated }) => {
     );
 };
 
-export default Dashboard;
+export default Sidebar;
 
 
 

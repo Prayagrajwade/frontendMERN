@@ -3,14 +3,14 @@ import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import { useState } from "react";
 import Login from "./components/Login";
 import Registration from "./components/Registration";
-import Dashboard from "./components/Dashboard";
 import ForgetPassword from "./components/ForgetPassword";
 import Layout from './Layout.jsx';
 import Home from './LandingPage/Home/Home.jsx';
 import About from './LandingPage/About/About.jsx';
 import Contact from './LandingPage/Contact/Contact.jsx';
 import User from './LandingPage/User/User.jsx';
-import SaveUserInfo from './components/SaveUserInfo.jsx';
+import Dashboard from './components/Dasboard.jsx';
+import Sidebar from './components/Sidebar.jsx';
 
 const App = () => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -42,8 +42,10 @@ const App = () => {
           <Route path="register" element={<Registration />} />
           <Route path="forgetpass" element={<ForgetPassword />} />
         </Route>
-        <Route path="dashboard" element={<ProtectedRoute element={<Dashboard setIsAuthenticated={setIsAuthenticated} />} />} />
-        <Route path="saveuserdata" element={<ProtectedRoute element={<SaveUserInfo setIsAuthenticated={setIsAuthenticated} />} />} />
+
+        <Route path="/" element={<ProtectedRoute  element={<Sidebar />} />}>
+            <Route path="" element={<Dashboard />}/>
+        </Route>
       </Routes>
     </BrowserRouter>
   );

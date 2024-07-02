@@ -1,9 +1,9 @@
 import React from 'react'
 
-function SaveUserInfo() {
+function Dasboard() {
     return (
         <div>SaveUserInfo</div>
     )
 }
 
-export default SaveUserInfo
+export default Dashboard
