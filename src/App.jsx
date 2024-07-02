@@ -38,10 +38,10 @@ const App = () => {
           <Route path="about" element={<About />} />
           <Route path="contact" element={<Contact />} />
           <Route path="user/:userid" element={<User />} />
+          <Route path="login" element={<Login setIsAuthenticated={setIsAuthenticated} />} />
+          <Route path="register" element={<Registration />} />
+          <Route path="forgetpass" element={<ForgetPassword />} />
         </Route>
-        <Route path="login" element={<PublicRoute element={<Login setIsAuthenticated={setIsAuthenticated} />} />} />
-        <Route path="register" element={<PublicRoute element={<Registration />} />} />
-        <Route path="forgetpass" element={<PublicRoute element={<ForgetPassword />} />} />
         <Route path="dashboard" element={<ProtectedRoute element={<Dashboard setIsAuthenticated={setIsAuthenticated} />} />} />
         <Route path="saveuserdata" element={<ProtectedRoute element={<SaveUserInfo setIsAuthenticated={setIsAuthenticated} />} />} />
       </Routes>
