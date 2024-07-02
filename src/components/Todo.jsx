@@ -18,11 +18,9 @@ function Todo() {
         axios
             .get("https://backendmern-r876.onrender.com/getTodoList")
             .then((result) => {
-                toast.success("Todo added successfully!");
                 setTodoList(result.data);
             })
             .catch((err) => console.log(err));
-            toast.success("Something wrong!");
     }, []);
 
     // Function to toggle the editable state for a specific row
@@ -45,8 +43,7 @@ function Todo() {
     const addTask = (e) => {
         e.preventDefault();
         if (!newTask || !newStatus || !newDeadline) {
-            toast.success("Fill required fields!");
-            // alert("All fields must be filled out.");
+            toast.error("All fields must be filled out.");
             return;
         }
 
@@ -55,11 +52,11 @@ function Todo() {
         axios
             .post("https://backendmern-r876.onrender.com/addTodoList", newTodo)
             .then((res) => {
-                toast.success("Todo added successfully!");
                 setTodoList((prev) => [...prev, res.data]);
                 setNewTask("");
                 setNewStatus("");
                 setNewDeadline("");
+                toast.success("Todo added successfully!");
             })
             .catch((err) => console.log(err));
     };
@@ -73,17 +70,13 @@ function Todo() {
         };
 
         if (!editedTask || !editedStatus || !editedDeadline) {
-            alert("All fields must be filled out.");
+            toast.error("All fields must be filled out.");
             return;
         }
 
         axios
-            .post(
-                "https://backendmern-r876.onrender.com/updateTodoList/" + id,
-                editedData
-            )
+            .post("https://backendmern-r876.onrender.com/updateTodoList/" + id, editedData)
             .then((result) => {
-                toast.success("Todo updated successfully!");
                 setTodoList((prev) =>
                     prev.map((item) => (item._id === id ? result.data : item))
                 );
@@ -91,6 +84,7 @@ function Todo() {
                 setEditedTask("");
                 setEditedStatus("");
                 setEditedDeadline("");
+                toast.success("Todo updated successfully!");
             })
             .catch((err) => console.log(err));
     };
@@ -100,36 +94,36 @@ function Todo() {
         axios
             .delete("https://backendmern-r876.onrender.com/deleteTodoList/" + id)
             .then(() => {
-                toast.success("Todo deleted successfully!");
                 setTodoList((prev) => prev.filter((item) => item._id !== id));
+                toast.success("Todo deleted successfully!");
             })
             .catch((err) => console.log(err));
     };
 
     return (
-        <div className="container mt-5">
-            <div className="row">
-                <div className="col-md-7">
-                    <h2 className="text-center">Todo List</h2>
-                    <div className="table-responsive">
-                        <table className="table table-bordered">
-                            <thead className="table-primary">
+        <div className="container mx-auto mt-10 p-6">
+            <div className="flex flex-wrap -mx-4">
+                <div className="w-full lg:w-2/3 px-4 mb-6 lg:mb-0">
+                    <h2 className="text-2xl font-semibold text-center mb-6">Todo List</h2>
+                    <div className="overflow-x-auto">
+                        <table className="min-w-full bg-white border border-gray-200">
+                            <thead className="bg-gray-100">
                                 <tr>
-                                    <th>Task</th>
-                                    <th>Status</th>
-                                    <th>Deadline</th>
-                                    <th>Actions</th>
+                                    <th className="py-2 px-4 border-b">Task</th>
+                                    <th className="py-2 px-4 border-b">Status</th>
+                                    <th className="py-2 px-4 border-b">Deadline</th>
+                                    <th className="py-2 px-4 border-b">Actions</th>
                                 </tr>
                             </thead>
                             {Array.isArray(todoList) ? (
                                 <tbody>
                                     {todoList.map((data) => (
-                                        <tr key={data._id}>
-                                            <td>
+                                        <tr key={data._id} className="border-b">
+                                            <td className="py-2 px-4">
                                                 {editableId === data._id ? (
                                                     <input
                                                         type="text"
-                                                        className="form-control"
+                                                        className="w-full p-2 border rounded"
                                                         value={editedTask}
                                                         onChange={(e) => setEditedTask(e.target.value)}
                                                     />
@@ -137,11 +131,11 @@ function Todo() {
                                                     data.task
                                                 )}
                                             </td>
-                                            <td>
+                                            <td className="py-2 px-4">
                                                 {editableId === data._id ? (
                                                     <input
                                                         type="text"
-                                                        className="form-control"
+                                                        className="w-full p-2 border rounded"
                                                         value={editedStatus}
                                                         onChange={(e) => setEditedStatus(e.target.value)}
                                                     />
@@ -149,11 +143,11 @@ function Todo() {
                                                     data.status
                                                 )}
                                             </td>
-                                            <td>
+                                            <td className="py-2 px-4">
                                                 {editableId === data._id ? (
                                                     <input
                                                         type="datetime-local"
-                                                        className="form-control"
+                                                        className="w-full p-2 border rounded"
                                                         value={editedDeadline}
                                                         onChange={(e) => setEditedDeadline(e.target.value)}
                                                     />
@@ -163,24 +157,24 @@ function Todo() {
                                                     ""
                                                 )}
                                             </td>
-                                            <td>
+                                            <td className="py-2 px-4 flex space-x-2">
                                                 {editableId === data._id ? (
                                                     <button
-                                                        className="btn btn-success btn-sm"
+                                                        className="bg-green-500 text-white px-4 py-2 rounded"
                                                         onClick={() => saveEditedTask(data._id)}
                                                     >
                                                         Save
                                                     </button>
                                                 ) : (
                                                     <button
-                                                        className="btn btn-primary btn-sm"
+                                                        className="bg-blue-500 text-white px-4 py-2 rounded"
                                                         onClick={() => toggleEditable(data._id)}
                                                     >
                                                         Edit
                                                     </button>
                                                 )}
                                                 <button
-                                                    className="btn btn-danger btn-sm ml-1"
+                                                    className="bg-red-500 text-white px-4 py-2 rounded"
                                                     onClick={() => deleteTask(data._id)}
                                                 >
                                                     Delete
@@ -192,55 +186,55 @@ function Todo() {
                             ) : (
                                 <tbody>
                                     <tr>
-                                        <td colSpan="4">Loading products...</td>
+                                        <td colSpan="4" className="text-center py-4">Loading tasks...</td>
                                     </tr>
                                 </tbody>
                             )}
                         </table>
                     </div>
                 </div>
-                <div className="col-md-5">
-                    <h2 className="text-center">Add Task</h2>
-                    <form className="bg-light p-4">
-                        <div className="mb-3">
-                            <label>Task</label>
+                <div className="w-full lg:w-1/3 px-4">
+                    <h2 className="text-2xl font-semibold text-center mb-6">Add Task</h2>
+                    <form className="bg-gray-100 p-6 rounded-lg shadow-md">
+                        <div className="mb-4">
+                            <label className="block mb-2 text-sm font-medium">Task</label>
                             <input
-                                className="form-control"
+                                className="w-full p-2 border rounded"
                                 type="text"
                                 placeholder="Enter Task"
                                 value={newTask}
                                 onChange={(e) => setNewTask(e.target.value)}
                             />
                         </div>
-                        <div className="mb-3">
-                            <label>Status</label>
+                        <div className="mb-4">
+                            <label className="block mb-2 text-sm font-medium">Status</label>
                             <input
-                                className="form-control"
+                                className="w-full p-2 border rounded"
                                 type="text"
                                 placeholder="Enter Status"
                                 value={newStatus}
                                 onChange={(e) => setNewStatus(e.target.value)}
                             />
                         </div>
-                        <div className="mb-3">
-                            <label>Deadline</label>
+                        <div className="mb-4">
+                            <label className="block mb-2 text-sm font-medium">Deadline</label>
                             <input
-                                className="form-control"
+                                className="w-full p-2 border rounded"
                                 type="datetime-local"
                                 value={newDeadline}
                                 onChange={(e) => setNewDeadline(e.target.value)}
                             />
                         </div>
-                        <button onClick={addTask} className="btn btn-success btn-sm">
+                        <button
+                            onClick={addTask}
+                            className="w-full bg-green-500 text-white py-2 rounded"
+                        >
                             Add Task
                         </button>
-                        <ToastContainer
-                        position="top-center"
-                        autoClose={2000}
-                    />
                     </form>
                 </div>
             </div>
+            <ToastContainer position="top-center" autoClose={2000} />
         </div>
     );
 }
