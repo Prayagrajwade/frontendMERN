@@ -76,7 +76,7 @@ const Dashboard = ({ setIsAuthenticated, currentUser }) => {
                     </div>
                 </nav>
                 <div className="mt-6 text-white">
-                {currentUser && <p>Welcome, {currentUser.user.username}!</p>}
+                {currentUser && <p>Welcome, {currentUser}!</p>}
             </div>
             </div>
         </aside>
