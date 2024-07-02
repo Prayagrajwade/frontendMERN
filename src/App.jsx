@@ -41,10 +41,9 @@ const App = () => {
           <Route path="login" element={<Login setIsAuthenticated={setIsAuthenticated} />} />
           <Route path="register" element={<Registration />} />
           <Route path="forgetpass" element={<ForgetPassword />} />
-        </Route>
-
-        <Route path="/" element={<ProtectedRoute  element={<Sidebar />} />}>
-            <Route path="" element={<Dashboard />}/>
+        </Route> 
+        <Route path="/" element={<ProtectedRoute element={<Sidebar           setIsAuthenticated={setIsAuthenticated} />} />}>
+          <Route path="" element={<Dashboard setIsAuthenticated={setIsAuthenticated} />} />
         </Route>
       </Routes>
     </BrowserRouter>
@@ -55,7 +54,8 @@ export default App;
 
 
 
-
+// <Route path="sidebar" element={<ProtectedRoute element={<Sidebar setIsAuthenticated={setIsAuthenticated} />} />} />
+// <Route path="dashboard" element={<ProtectedRoute element={<Dashboard setIsAuthenticated={setIsAuthenticated} />} />} />
 
 
 
