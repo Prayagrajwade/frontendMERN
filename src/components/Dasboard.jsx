@@ -1,9 +1,9 @@
-import Navbar from "../UserRecord/NavBar";
+import NavBar from "../UserRecord/NavBar";
 
 
 function Dashboard({ setIsAuthenticated }) {
     return (
-        <Navbar/>
+        <NavBar/>
     )
 }
 
