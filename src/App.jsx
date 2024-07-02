@@ -49,7 +49,7 @@ const App = () => {
         <Route path="sidebar" element={<ProtectedRoute element={<Sidebar setIsAuthenticated={setIsAuthenticated} />} />} />
         <Route path="dashboard" element={<ProtectedRoute element={<Dashboard setIsAuthenticated={setIsAuthenticated} />} />} />
         <Route path="profile" element={<ProtectedRoute element={<UserProfile setIsAuthenticated={setIsAuthenticated}/>} />} />
-        <Route path="record" element={<ProtectedRoute element={<Record setIsAuthenticated={setIsAuthenticated} />}/>} />
+        <Route path="/edit/:id" element={<ProtectedRoute element={<Record setIsAuthenticated={setIsAuthenticated} />}/>} />
         <Route path="recordlist" element={<ProtectedRoute element={<RecordList setIsAuthenticated={setIsAuthenticated} />}/>} />
         <Route path="layoutpro" element={<ProtectedRoute element={<LayoutProtected setIsAuthenticated={setIsAuthenticated}/>}/>} />
       </Routes>

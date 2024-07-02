@@ -1,7 +1,7 @@
 import { Outlet } from 'react-router-dom'
 import NavBar from './UserRecord/NavBar.jsx';
 
-function LayoutProtected() {
+function LayoutProtected({setIsAuthenticated}) {
     return (
         <div>
             <NavBar />
