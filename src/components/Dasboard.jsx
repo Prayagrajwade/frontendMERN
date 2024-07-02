@@ -7,7 +7,7 @@ const Dashboard = () => {
     useEffect(() => {
         const fetchUsers = async () => {
             try {
-                const response = await axios.get('https://backendmern-r876.onrender.com/api/v1/users/current-user'); // Fetch users from our API
+                const response = await axios.get('https://backendmern-r876.onrender.com/users'); // Fetch users from our API
                 setUsers(response.data); // Update state with fetched users
             } catch (error) {
                 console.error('Error fetching users:', error);
