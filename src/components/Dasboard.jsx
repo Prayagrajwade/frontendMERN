@@ -9,4 +9,4 @@ function Dasboard() {
   )
 }
 
-export default Dasboard
+export default Dasboard;
