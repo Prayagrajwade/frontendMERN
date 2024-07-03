@@ -48,7 +48,7 @@ const App = () => {
         </Route>
         <Route path="/" element={<ProtectedRoute element={<ProtectedLayout />} />}>
           <Route path="dashboard" element={<Dashboard />}>
-            <Route index element={<Todo />} />  {/* Default child route */}
+            <Route index element={<Todo />} />
           </Route>
           <Route path="profile" element={<UserProfile setIsAuthenticated={setIsAuthenticated} />} />
         </Route>
