@@ -13,7 +13,6 @@ export default defineConfig({
         rewrite: (path) => path.replace(/^\/api\/v1\/users/, ""),
       },
     },
-    // historyApiFallback: true, // Add this line
   },
 });
 

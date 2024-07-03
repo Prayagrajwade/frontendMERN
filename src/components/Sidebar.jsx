@@ -8,7 +8,7 @@ const Sidebar = ({ setIsAuthenticated }) => {
     const handleLogout = () => {
                 localStorage.removeItem("token");
                 setIsAuthenticated(false);
-                localStorage.removeItem("isAuthenticated");
+                // localStorage.removeItem("isAuthenticated");
                 navigate("/");
             };
 
