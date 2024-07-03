@@ -20,6 +20,7 @@ const Login = ({ setIsAuthenticated }) => {
                     password,
                 }
             );
+            localStorage.setItem("authToken", response.data.token); // Store the token
             setIsAuthenticated(true);
             setMessage(response.data.message);
             navigate("/");

@@ -1,6 +1,6 @@
 import './index.css';
 import { BrowserRouter, Routes, Route, Navigate, Outlet } from 'react-router-dom';
-import { useState } from "react";
+import { useState , useEffect } from "react";
 import Login from "./components/Login";
 import Registration from "./components/Registration";
 import ForgetPassword from "./components/ForgetPassword";
@@ -16,6 +16,13 @@ import Todo from './components/Todo.jsx';
 
 const App = () => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
+
+  useEffect(() => {
+    const token = localStorage.getItem("authToken");
+    if (token) {
+      setIsAuthenticated(true);
+    }
+  }, []);
 
   const ProtectedRoute = ({ element }) => {
     return isAuthenticated ? element : <Navigate to="/login" />;
