@@ -28,3 +28,12 @@ export default defineConfig({
 //   },
 //   plugins: [react()]
 // })
+
+// proxy: {
+//   "/api/v1/users": {
+//     target: "https://backendmern-r876.onrender.com",
+//     changeOrigin: true,
+//     secure: false,
+//     rewrite: (path) => path.replace(/^\/api\/v1\/users/, ""),
+//   },
+// },
